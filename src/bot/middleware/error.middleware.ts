@@ -21,7 +21,7 @@ export async function errorMiddleware(
     );
 
     try {
-      await ctx.reply("An error occurred. Please try again later.");
+      await ctx.reply("Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.");
     } catch {
       logger.error("Failed to send error message to user");
     }

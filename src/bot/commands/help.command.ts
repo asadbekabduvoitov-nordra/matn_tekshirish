@@ -1,23 +1,18 @@
 import type { BotContext } from "../../types/index.js";
 
 export async function helpCommand(ctx: BotContext): Promise<void> {
-  const helpText = `
-🤖 *Matn Tekshirish Bot*
+  const helpText =
+    `📝 Esse Tekshirish Bot\n\n` +
+    `Bu bot orqali essalaringizni tekshirish uchun yuborishingiz mumkin.\n\n` +
+    `📚 Mavjud buyruqlar:\n\n` +
+    `/start - 🚀 Botni ishga tushirish\n` +
+    `/matn_tekshirish - 📝 Esse tekshirish xizmatini boshlash\n` +
+    `/help - ❓ Yordam\n\n` +
+    `📋 Qanday foydalanish:\n` +
+    `1️⃣ /matn_tekshirish buyrug'ini yuboring\n` +
+    `2️⃣ Tekshirmoqchi bo'lgan rasm yoki matnlarni yuboring\n` +
+    `3️⃣ "✅ Tayyor" tugmasini bosing\n` +
+    `4️⃣ Javobni kuting ⏳`;
 
-Bu bot orqali siz matnlaringizni tekshirish uchun yuborishingiz mumkin. Rasmlar yoki matnlar yuboring va mutaxassislarimiz sizga javob berishadi.
-
-📚 *Mavjud buyruqlar:*
-
-/start - Botni ishga tushirish
-/matn\\_tekshirish - Matn tekshirish xizmatini boshlash
-/help - Yordam va buyruqlar ro'yxati
-
-📝 *Qanday foydalanish:*
-1. /matn\\_tekshirish buyrug'ini yuboring
-2. Tekshirmoqchi bo'lgan rasm yoki matnlarni yuboring
-3. "✅ Tayyor" tugmasini bosing
-4. Javobni kuting!
-  `.trim();
-
-  await ctx.reply(helpText, { parse_mode: "Markdown" });
+  await ctx.reply(helpText);
 }

@@ -12,6 +12,8 @@ export interface SessionData extends Scenes.SceneSession {
   messageCount?: number;
   collectedMessages?: CollectedMessage[];
   lastConfirmationMessageId?: number;
+  awaiting_payment_check?: boolean;
+  activePermissionId?: string;
 }
 
 export interface BotContext extends Context {
