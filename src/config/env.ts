@@ -15,7 +15,10 @@ const envSchema = z.object({
   SUPABASE_ANON_KEY: z.string().min(1, "SUPABASE_ANON_KEY is required"),
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
 
-  GROUP_CHAT_ID: z.coerce.number().default(-5133498029),
+  GROUP_CHAT_ID: z.coerce.number().default(-1003764470027),
+  PAYMENT_CHAT_ID: z.coerce.number().default(-1003787344965),
+
+  REQUIRED_CHANNEL: z.string().default("@ANORAMAHKAMOVA1"),
 });
 
 export type Env = z.infer<typeof envSchema>;

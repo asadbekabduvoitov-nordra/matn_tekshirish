@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      quiz_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          payment_proof_url: string | null
+          purchase_type: Database["public"]["Enums"]["purchase_type_enum"]
+          purchased_at: string
+          remaining_quiz_accesses: number
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["quiz_permission_status"] | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payment_proof_url?: string | null
+          purchase_type?: Database["public"]["Enums"]["purchase_type_enum"]
+          purchased_at?: string
+          remaining_quiz_accesses?: number
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["quiz_permission_status"] | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payment_proof_url?: string | null
+          purchase_type?: Database["public"]["Enums"]["purchase_type_enum"]
+          purchased_at?: string
+          remaining_quiz_accesses?: number
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["quiz_permission_status"] | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_permissions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quiz_permissions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       submissions: {
         Row: {
           answered_at: string | null
@@ -106,6 +160,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      purchase_type_enum: "PAYMENT" | "PRIZE"
+      quiz_permission_status: "APPROVED" | "REJECTED" | "BLOCKED"
       submission_status: "PENDING" | "ANSWERED"
       user_status: "ACTIVE" | "BANNED" | "INACTIVE" | "DELETED"
     }
@@ -235,6 +291,9 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      purchase_type_enum: ["PAYMENT", "PRIZE"],
+      quiz_permission_status: ["APPROVED", "REJECTED", "BLOCKED"],
+      submission_status: ["PENDING", "ANSWERED"],
       user_status: ["ACTIVE", "BANNED", "INACTIVE", "DELETED"],
     },
   },

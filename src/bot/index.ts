@@ -6,6 +6,8 @@ import {
   authMiddleware,
   loggerMiddleware,
   errorMiddleware,
+  banMiddleware,
+  subscriptionMiddleware,
 } from "./middleware/index.js";
 import { registerCommands } from "./commands/index.js";
 import { registerHandlers } from "./handlers/index.js";
@@ -28,6 +30,8 @@ export function createBot(): Telegraf<BotContext> {
   bot.use(errorMiddleware);
   bot.use(loggerMiddleware);
   bot.use(authMiddleware);
+  bot.use(banMiddleware);
+  bot.use(subscriptionMiddleware);
 
   registerCommands(bot);
   registerHandlers(bot);
@@ -41,8 +45,8 @@ export async function startBot(bot: Telegraf<BotContext>): Promise<void> {
   // Register commands with Telegram so they appear in the command menu
   await bot.telegram.setMyCommands([
     { command: "start", description: "Botni ishga tushirish" },
-    { command: "matn_tekshirish", description: "Matn tekshirish xizmatini boshlash" },
-    { command: "help", description: "Yordam va buyruqlar ro'yxati" },
+    { command: "matn_tekshirish", description: "Esse tekshirish xizmatini boshlash" },
+    { command: "help", description: "Yordam" },
   ]);
   logger.info("Bot commands registered");
 
